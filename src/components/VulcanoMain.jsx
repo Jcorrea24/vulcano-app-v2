@@ -1,8 +1,10 @@
+import { useNavigate } from 'react-router-dom';
 import '../styles/VulcanoMain.css';
 
 const logoVideo = '/videos/Logo.mp4';
 
 const VulcanoMain = () => {
+  const navigate = useNavigate()
   return (
     <main className="vh-hero">
       <div className="vh-hero-content">
@@ -18,7 +20,7 @@ const VulcanoMain = () => {
           </h1>
           <div className="vh-button-group">
             <button className="vh-btn-primary">EMPIEZA AHORA</button>
-            <button className="vh-btn-secondary">YA TENGO UNA CUENTA</button>
+            <button onClick={()=>navigate("/Login")} className="vh-btn-secondary">YA TENGO UNA CUENTA</button>
           </div>
         </div>
       </div>
