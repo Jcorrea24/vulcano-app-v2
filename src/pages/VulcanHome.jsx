@@ -12,10 +12,7 @@ const VulcanoHome = () => {
     <div className="vh-container">
       <NavbarPpal />
       <VulcanoMain />
-      <VulcanoCarousel />
-      <section>
-      <VulcanoLogin />
-      </section>      
+      <VulcanoCarousel />    
       <VulcanoFooter />
     </div>
   );

@@ -1,12 +1,11 @@
-import { useState } from 'react'
-import VulcanHome from './pages/VulcanHome';
+import { MyRoutes } from './router/router';
 
 function App() {
 
   return (
-    <>
-      <VulcanHome />
-    </>
+    <div>
+      <MyRoutes/>
+    </div>
   )
 }
 
