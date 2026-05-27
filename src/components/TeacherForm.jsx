@@ -77,8 +77,7 @@ const TeacherForm = () => {
     const payload = {
       username,
       password,
-      // NO enviamos role aquí para que el backend use el default (USER)
-      // Luego lo actualizamos con PATCH para evitar problemas de compatibilidad
+      role: "TEACHER",
       profile: {
         firstName: formData.firstName.trim(),
         lastName: formData.lastName.trim(),
@@ -91,7 +90,7 @@ const TeacherForm = () => {
     };
 
     try {
-      // PASO 1: Crear el usuario
+      // PASO 1: Crear el usuario con rol TEACHER desde el inicio
       const res = await fetch(end_points.users, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -106,16 +105,7 @@ const TeacherForm = () => {
 
       const saved = await res.json();
 
-      // PASO 2: Actualizar role a TEACHER (ignoramos si falla — el usuario igual se creó)
-      try {
-        await fetch(`${end_points.users}/${saved.id}/role`, {
-          method: "PATCH",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ role: "TEACHER" }),
-        });
-      } catch (roleErr) {
-        console.warn("No se pudo asignar rol TEACHER:", roleErr);
-      }
+      // El rol TEACHER ya fue enviado en el payload inicial — no necesitamos PATCH
 
       // ✅ Toast de éxito
       await Swal.fire({
