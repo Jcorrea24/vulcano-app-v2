@@ -1,7 +1,7 @@
 
 // URL relativa: el proxy de Vite redirige /api/* a localhost:8080
 // Igual que courseService.js y scheduleService.js
-const API = "/api/modules";
+const API = `${import.meta.env.VITE_API_BASE_URL || "/api/"}modules`;
 
 /**
  * Helper: obtiene el userId del usuario logueado desde localStorage.

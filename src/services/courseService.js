@@ -9,7 +9,7 @@
 // URL relativa: el proxy de Vite redirige /api/* a localhost:8080
 // Esto evita el error de CORS y permite que el proyecto funcione
 // en cualquier servidor, no solo en localhost.
-const API = "/api/courses";
+const API = `${import.meta.env.VITE_API_BASE_URL || "/api/"}courses`;
 
 /**
  * Helper: extrae el mensaje de error de una respuesta HTTP fallida.

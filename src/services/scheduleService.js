@@ -3,7 +3,7 @@
  * Este archivo centraliza las peticiones CRUD para las clases/horarios.
  */
 
-const API_BASE_URL = "/api/schedules";
+const API_BASE_URL = `${import.meta.env.VITE_API_BASE_URL || "/api/"}schedules`;
 
 /**
  * Obtiene todos los horarios (la lista completa para gestión).

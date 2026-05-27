@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Icon } from "@iconify/react";
-import { getAllUsers } from "../services/api";
+import { getAllUsers, end_points } from "../services/api";
 import Swal from "sweetalert2";
 import "../styles/TeacherForm.css";
 
@@ -92,7 +92,7 @@ const TeacherForm = () => {
 
     try {
       // PASO 1: Crear el usuario
-      const res = await fetch("/api/users", {
+      const res = await fetch(end_points.users, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -108,7 +108,7 @@ const TeacherForm = () => {
 
       // PASO 2: Actualizar role a TEACHER (ignoramos si falla — el usuario igual se creó)
       try {
-        await fetch(`/api/users/${saved.id}/role`, {
+        await fetch(`${end_points.users}/${saved.id}/role`, {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ role: "TEACHER" }),
@@ -167,7 +167,7 @@ const TeacherForm = () => {
 
     if (isConfirmed) {
       try {
-        const res = await fetch(`/api/users/${id}`, { method: "DELETE" });
+        const res = await fetch(`${end_points.users}/${id}`, { method: "DELETE" });
         if (!res.ok) throw new Error();
         Swal.fire({ title: "Eliminado", icon: "success", background: "#fff4e2" });
         loadTeachers();
